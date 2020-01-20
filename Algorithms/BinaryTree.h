@@ -8,6 +8,7 @@ class BinaryTree {
 
 	private:
 		Node root;
+		
 
 	public:
 		BinaryTree(const Node& root);

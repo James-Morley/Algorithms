@@ -6,7 +6,6 @@ BinaryTree::BinaryTree(const Node& _root) {
 	root = _root;
 }
 
-
 void BinaryTree::setRoot(const Node& _root) {
 	root = _root;
 }
