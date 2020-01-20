@@ -23,15 +23,15 @@ class Node {
 		const int& getValue() const;
 		void setValue(const int& value);
 		
-		Node& getLeft() const;
-		void setLeft(Node& node);
+		const Node* getLeft() const;
+		void setLeft(Node* left);
 
-		Node& getRight() const;
-		void setRight(Node& right);
+		const Node* getRight() const;
+		void setRight(Node* right);
 
 		//COPY CONSTRUCTOR AND ASSIGNMENT
 		Node(const Node& node);
-		Node& operator = (const Node& node);
+		Node& operator = (Node& node);
 
 		friend std::ostream& operator <<(std::ostream& os, const Node& node);
 };

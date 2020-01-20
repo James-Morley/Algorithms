@@ -8,8 +8,8 @@ int Node::id = 0;
 Node::Node(const int& _value) {
 	id++;
 	value = _value;
-	left = nullptr;
-	right = nullptr;
+	left = NULL;
+	right = NULL;
 }
 
 Node::Node() {}
@@ -31,43 +31,28 @@ const int& Node::getValue() const {
 	return value;
 }
 
-void Node::setLeft(Node& node) {
-	left = &node;
+//LEFT AND RIGHT GETTERS AND SETTERS
+void Node::setLeft(Node* node) {
+	this->left = node;
 }
 
-Node& Node::getLeft() const {
-	return *left;
+const Node* Node::getLeft() const {
+	return this->left;
 }
 
-void Node::setRight(Node& node) {
-	right = &node;
+void Node::setRight(Node* node) {
+	this->right = node;
 }
 
-Node& Node::getRight() const {
-	return *right;
+const Node* Node::getRight() const {
+	return this->right;
 }
 
 //COPY CONSTRUCTOR AND COPY ASSIGNMENT
 Node::Node(const Node& node) {
 	value = node.getValue();
-	left = &node.getLeft();
-	right = &node.getRight();
-}
-
-Node& Node::operator = (const Node& other) {
-	if (this != &other) {
-
-		left = nullptr;
-		delete left;
-		right = nullptr;
-		delete right;
-
-		id = other.getValue();
-		left = &other.getLeft();
-		right = &other.getRight();
-
-	}
-	return *this;
+	*left = *node.left;
+	*right = *node.right;
 }
 
 std::ostream& operator << (std::ostream& os, const Node& node) {
