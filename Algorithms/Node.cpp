@@ -50,10 +50,36 @@ const Node* Node::getRight() const {
 
 //COPY CONSTRUCTOR AND COPY ASSIGNMENT
 Node::Node(const Node& node) {
+
+	delete left;
+	left = nullptr;
+	
+	delete right;
+	right = nullptr;
+
 	value = node.getValue();
 	*left = *node.left;
 	*right = *node.right;
 }
+
+
+Node& Node::operator = (const Node& other) {
+	if (this != &other) {
+
+		delete left;
+		left = nullptr;
+
+		delete right;
+		right = nullptr;
+
+		value = other.getValue();
+		*left = *other.getLeft();
+		*right = *other.getRight();
+
+	}
+	return *this;
+}
+
 
 std::ostream& operator << (std::ostream& os, const Node& node) {
 	os << "Node " << Node::id << " has ID: " << node.getValue() << "\n";

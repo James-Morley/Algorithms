@@ -7,18 +7,15 @@
 class BinaryTree {
 
 	private:
-		Node root;
+		Node* root;
 		
-
 	public:
-		BinaryTree(const Node& root);
+		BinaryTree(const Node* root);
 
-		void setRoot(const Node& root);
+		void setRoot(const Node* root);
 		const Node& getRoot() const;
 
-		void insert(const Node& node);
-
-
+		void insert(Node* node);
 };
 
 #endif // !_BINARY_TREE_H

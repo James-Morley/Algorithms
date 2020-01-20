@@ -31,7 +31,7 @@ class Node {
 
 		//COPY CONSTRUCTOR AND ASSIGNMENT
 		Node(const Node& node);
-		Node& operator = (Node& node);
+		Node& operator = (const Node& node);
 
 		friend std::ostream& operator <<(std::ostream& os, const Node& node);
 };
