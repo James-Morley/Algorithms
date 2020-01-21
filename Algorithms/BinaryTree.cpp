@@ -3,12 +3,10 @@
 #include <iostream>
 
 BinaryTree::BinaryTree() {
-	std::cout << "IN CONSTRUCTOR" << std::endl;
 	root = nullptr;
 }
 
 BinaryTree::~BinaryTree() {
-	std::cout << "IN DESTRUCTOR" << std::endl;
 	deleteTree(root);
 }
 
@@ -22,7 +20,11 @@ void BinaryTree::deleteTree(Node* node) {
 
 void BinaryTree::insert(const int& key) {
 
-	std::cout << "IN INSERT KEY: " << key << std::endl;
+	//THE PROBLEM IS WHEN A NEW NODE IS ADDED TO ROOT AS SOON AS WE LEAVE
+	//THIS FUNCTION THE POINTER TO THE NODE WE JUST ADDED IS LOST
+	//THEREFORE IF ROOT IS 0 AND ADD 1 - THE POINTER FROM 0 TO 1 IS
+	//DESTROYED SO WHEN WE ADD 2 0'S POINTER TO ONE IS GONE.
+
 
 	if (this->root == NULL) {
 
@@ -36,19 +38,25 @@ void BinaryTree::insert(const int& key) {
 
 		Node curr = *root;
 
+		//Node& temp = *root->right;
+
+		//THIS BIT IS FUCKED
 		while (true) {
 
 			if (key <= curr.value) {
 
 				if (curr.left == nullptr) {
 
-					root->left = new Node { key,nullptr,nullptr };
+					Node n = { key,nullptr,nullptr };
+					curr.left = &n;
+
+					//curr.left = new Node { key,nullptr,nullptr };
 					break;
 
 				}
 				else {
 
-					curr = *root->left;
+					curr = *curr.left;
 
 				}
 			}
@@ -56,17 +64,26 @@ void BinaryTree::insert(const int& key) {
 
 				if (curr.right == nullptr) {
 
-					root->right = new Node { key,nullptr,nullptr };
+					Node n = { key, nullptr, nullptr };
+					curr.right = &n;
+
+					//curr.right = new Node { key,nullptr,nullptr };
 					break;
 
 				}
 				else {
 
-					curr = *root->right;
+					curr = *curr.right;
 
 				}
 			}
 		}
+
+
+
 	}
-	std::cout << "SUCCESSFUL INSERTION" << std::endl;
+}
+
+bool BinaryTree::contains(const int& key) const {
+	return true;
 }
