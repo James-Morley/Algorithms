@@ -1,60 +1,72 @@
 #include "pch.h"
 #include "BinaryTree.h"
-#include "Node.h"
 #include <iostream>
 
-BinaryTree::BinaryTree(const Node* _root) {
-	*root = *_root;
+BinaryTree::BinaryTree() {
+	std::cout << "IN CONSTRUCTOR" << std::endl;
+	root = nullptr;
 }
 
-void BinaryTree::setRoot(const Node* _root) {
-	*root = *_root;
+BinaryTree::~BinaryTree() {
+	std::cout << "IN DESTRUCTOR" << std::endl;
+	deleteTree(root);
 }
 
-const Node& BinaryTree::getRoot() const {
-	return *root;
+void BinaryTree::deleteTree(Node* node) {
+	if (node != NULL) {
+		deleteTree(node->left);
+		deleteTree(node->right);
+		delete node;
+	}
 }
 
-void BinaryTree::insert(Node* node) {
-	if (root == nullptr) {
-		*root = *node;
+void BinaryTree::insert(const int& key) {
+
+	std::cout << "IN INSERT KEY: " << key << std::endl;
+
+	if (this->root == NULL) {
+
+		root = new Node;
+		root->value = key;
+		root->left = NULL;
+		root->right = NULL;
+
 	}
 	else {
 
-		Node* curr = root;
+		Node curr = *root;
 
 		while (true) {
 
-			if (node->getValue() >= curr->getValue()) {
+			if (key <= curr.value) {
 
-				if (curr->getLeft() == nullptr) {
-					
-					curr->setLeft(node);
+				if (curr.left == nullptr) {
 
+					root->left = new Node { key,nullptr,nullptr };
 					break;
-				}
-				else {
-					
-					
 
-				}
-			}
-			else {
-
-				if (curr->getRight() == nullptr) {
-
-					curr->setRight(node);
-
-					break;
 				}
 				else {
 
-
+					curr = *root->left;
 
 				}
 			}
+			else if (key > curr.value) {
 
+				if (curr.right == nullptr) {
+
+					root->right = new Node { key,nullptr,nullptr };
+					break;
+
+				}
+				else {
+
+					curr = *root->right;
+
+				}
+			}
 		}
 	}
-	std::cout << "FINISHED INSERTING" << std::endl;
+	std::cout << "SUCCESSFUL INSERTION" << std::endl;
 }

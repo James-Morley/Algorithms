@@ -1,21 +1,28 @@
 #include "pch.h"
-#include "Node.h"
 
 #ifndef _BINARY_TREE_H
 #define _BINARY_TREE_H
 
 class BinaryTree {
 
+	struct Node {
+		int value;
+		Node* left;
+		Node* right;
+	};
+
 	private:
 		Node* root;
 		
+		void deleteTree(Node* node);
+
 	public:
-		BinaryTree(const Node* root);
+		BinaryTree();
+		~BinaryTree();
 
-		void setRoot(const Node* root);
-		const Node& getRoot() const;
+		void insert(const int& key);
 
-		void insert(Node* node);
+
 };
 
 #endif // !_BINARY_TREE_H
