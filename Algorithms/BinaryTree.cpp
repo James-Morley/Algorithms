@@ -148,3 +148,72 @@ bool BinaryTree::bfs(Node* node, const int& key) const {
 	std::cout << "BFS DOESN'T CONTAIN: " << key << std::endl;
 	return false;
 }
+
+
+//POST ORDER TRAVERSAL
+void BinaryTree::post_order_traversal() const {
+	std::cout << "POST ORDER TRAVERSAL" << std::endl;
+	post_order_traversal(root);
+}
+
+void BinaryTree::post_order_traversal(Node* node) const {
+	if (node == nullptr) {
+		return;
+	}
+
+	if (node->right != nullptr) {
+		post_order_traversal(node->right);
+	}
+
+	std::cout << node->value << std::endl;
+
+	if (node->left != nullptr) {
+		post_order_traversal(node->left);
+	}
+}
+
+//PRE ORDER TRAVERSAL
+void BinaryTree::pre_order_traversal() const {
+	std::cout << "PRE ORDER TRAVERSAL" << std::endl;
+	pre_order_traversal(root);
+}
+
+void BinaryTree::pre_order_traversal(Node* node) const {
+	if (node == nullptr) {
+		return;
+	}
+
+	std::cout << node->value << std::endl;
+
+	if (node->left != nullptr) {
+		pre_order_traversal(node->left);
+	}
+
+	if (node->right != nullptr) {
+		pre_order_traversal(node->right);
+	}
+
+}
+
+//IN ORDER TRAVERSAL
+void BinaryTree::in_order_traversal() const {
+	std::cout << "IN ORDER TRAVERSAL" << std::endl;
+	in_order_traversal(root);
+}
+
+void BinaryTree::in_order_traversal(Node* node) const {
+	if (node == nullptr) {
+		return;
+	}
+
+	if (node->left != nullptr) {
+		in_order_traversal(node->left);
+	}
+
+	std::cout << node->value << std::endl;
+
+	if (node->right != nullptr) {
+		in_order_traversal(node->right);
+	}
+
+}

@@ -27,6 +27,10 @@ class BinaryTree {
 		bool contains(Node* node, const int& key) const;
 		bool bfs(Node* node, const int& key) const;
 
+		void post_order_traversal(Node* node) const;
+		void pre_order_traversal(Node* node) const;
+		void in_order_traversal(Node* node) const;
+
 	public:
 		BinaryTree();
 		~BinaryTree();
@@ -34,6 +38,10 @@ class BinaryTree {
 		void insert(const int& key);
 		bool contains(const int& key) const;
 		bool bfs(const int& key) const;
+
+		void post_order_traversal() const;
+		void pre_order_traversal() const;
+		void in_order_traversal() const;
 
 };
 
