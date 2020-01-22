@@ -26,6 +26,7 @@ class BinaryTree {
 		Node* root;
 		
 		void deleteTree(Node* node);
+		void insert(Node* node, const int& key);
 
 	public:
 		BinaryTree();

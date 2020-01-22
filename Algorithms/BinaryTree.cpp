@@ -20,67 +20,52 @@ void BinaryTree::deleteTree(Node* node) {
 
 void BinaryTree::insert(const int& key) {
 
-	//THE PROBLEM IS WHEN A NEW NODE IS ADDED TO ROOT AS SOON AS WE LEAVE
-	//THIS FUNCTION THE POINTER TO THE NODE WE JUST ADDED IS LOST
-	//THEREFORE IF ROOT IS 0 AND ADD 1 - THE POINTER FROM 0 TO 1 IS
-	//DESTROYED SO WHEN WE ADD 2 0'S POINTER TO ONE IS GONE.
-
-
 	if (this->root == NULL) {
 
-		root = new Node;
-		root->value = key;
-		root->left = NULL;
-		root->right = NULL;
-
+		this->root = new Node;
+		this->root->value = key;
+		this->root->left = nullptr;
+		this->root->right = nullptr;
 	}
 	else {
+		insert(root, key);
+	}
+}
 
-		Node curr = *root;
+void BinaryTree::insert(Node* node, const int& key) {
 
-		//Node& temp = *root->right;
+	if (key <= node->value) {
 
-		//THIS BIT IS FUCKED
-		while (true) {
+		if (node->left == nullptr) {
 
-			if (key <= curr.value) {
+			node->left = new Node;
+			node->left->value = key;
+			node->left->left = nullptr;
+			node->left->right = nullptr;
 
-				if (curr.left == nullptr) {
+		}
+		else {
 
-					Node n = { key,nullptr,nullptr };
-					curr.left = &n;
+			insert(node->left, key);
 
-					//curr.left = new Node { key,nullptr,nullptr };
-					break;
-
-				}
-				else {
-
-					curr = *curr.left;
-
-				}
-			}
-			else if (key > curr.value) {
-
-				if (curr.right == nullptr) {
-
-					Node n = { key, nullptr, nullptr };
-					curr.right = &n;
-
-					//curr.right = new Node { key,nullptr,nullptr };
-					break;
-
-				}
-				else {
-
-					curr = *curr.right;
-
-				}
-			}
 		}
 
+	}
+	else if (key > node->value) {
 
+		if (node->right == nullptr) {
 
+			node->right = new Node;
+			node->right->value = key;
+			node->right->left = nullptr;
+			node->right->right = nullptr;
+
+		}
+		else {
+
+			insert(node->right, key);
+
+		}
 	}
 }
 
