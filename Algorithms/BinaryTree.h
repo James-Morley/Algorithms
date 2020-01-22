@@ -12,12 +12,12 @@ class BinaryTree {
 		Node* right;
 
 
-		Node& operator = (const Node& other) {
+		/*Node& operator = (const Node& other) {
 			value = other.value;
 			this->left = other.left;
 			this->right = other.right;
 			return *this;
-		}
+		}*/
 
 
 	};
@@ -27,6 +27,7 @@ class BinaryTree {
 		
 		void deleteTree(Node* node);
 		void insert(Node* node, const int& key);
+		bool contains(Node* node, const int& key) const;
 
 	public:
 		BinaryTree();

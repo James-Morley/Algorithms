@@ -70,5 +70,44 @@ void BinaryTree::insert(Node* node, const int& key) {
 }
 
 bool BinaryTree::contains(const int& key) const {
-	return true;
+	return contains(root, key);
+}
+
+bool BinaryTree::contains(Node* node, const int& key) const {
+	//DO THE SEARCHY THINGY BELOW...
+	if (node == nullptr) {
+		return false;
+	}
+	else if (node->value == key) {
+		return true;
+	}
+
+	if (key <= node->value) {
+
+		if (node->left == nullptr) {
+			return false;
+		}
+		else if (node->left->value == key) {
+			return true;
+		}
+		else {
+			return contains(node->left, key);
+		}
+
+	}
+	else if (key > node->value) {
+
+		if (node->right == nullptr) {
+			return false;
+		}
+		else if (node->right->value == key) {
+			return true;
+		}
+		else {
+			return contains(node->right, key);
+		}
+
+	}
+	std::cout << "THIS MEANS SOMETHING WENT WRONG" << std::endl;
+	return false;
 }
