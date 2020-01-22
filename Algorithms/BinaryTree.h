@@ -1,4 +1,5 @@
 #include "pch.h"
+#include <iostream>
 
 #ifndef _BINARY_TREE_H
 #define _BINARY_TREE_H
@@ -6,19 +7,15 @@
 class BinaryTree {
 
 	struct Node {
-
 		int value;
 		Node* left;
 		Node* right;
+		bool visited = false;
 
-
-		/*Node& operator = (const Node& other) {
-			value = other.value;
-			this->left = other.left;
-			this->right = other.right;
-			return *this;
-		}*/
-
+		friend std::ostream& operator << (std::ostream& os, const Node& n) {
+			os << "Node key: " << n.value << " has left:" << n.left << " has right: " << n.right << "\n";
+			return os;
+		}
 
 	};
 
@@ -28,6 +25,7 @@ class BinaryTree {
 		void deleteTree(Node* node);
 		void insert(Node* node, const int& key);
 		bool contains(Node* node, const int& key) const;
+		bool bfs(Node* node, const int& key) const;
 
 	public:
 		BinaryTree();
@@ -35,6 +33,7 @@ class BinaryTree {
 
 		void insert(const int& key);
 		bool contains(const int& key) const;
+		bool bfs(const int& key) const;
 
 };
 

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "BinaryTree.h"
 #include <iostream>
+#include <queue>
 
 BinaryTree::BinaryTree() {
 	root = nullptr;
@@ -74,7 +75,7 @@ bool BinaryTree::contains(const int& key) const {
 }
 
 bool BinaryTree::contains(Node* node, const int& key) const {
-	//DO THE SEARCHY THINGY BELOW...
+
 	if (node == nullptr) {
 		return false;
 	}
@@ -109,5 +110,41 @@ bool BinaryTree::contains(Node* node, const int& key) const {
 
 	}
 	std::cout << "THIS MEANS SOMETHING WENT WRONG" << std::endl;
+	return false;
+}
+
+bool BinaryTree::bfs(const int& key) const {
+	return bfs(root, key);
+}
+
+bool BinaryTree::bfs(Node* node, const int& key) const {
+
+	std::cout << "BFS KEY: " << key << std::endl;
+
+	std::queue<Node> q;
+
+	node->visited = true;
+
+	q.push(*node);
+
+	while (!q.empty()) {
+
+		Node* n = &q.front();
+
+		if (n->value == key) {
+			std::cout << "SUCCESSFUL BFS!" << std::endl;
+			return true;
+		}
+
+		if (n->left != nullptr) {
+			q.push(*n->left);
+		}
+		if (n->right != nullptr) {
+			q.push(*n->right);
+		}
+
+		q.pop();
+	}
+	std::cout << "BFS DOESN'T CONTAIN: " << key << std::endl;
 	return false;
 }
